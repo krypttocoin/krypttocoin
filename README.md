@@ -17,7 +17,7 @@ The krypttocoin coin is a decentralized peer-to-peer banking financial platform,
 | Specification | Value |
 |:-----------|:-----------|
 | Block Size | `4MB` |
-| Block Time | `120s` |
+| Block Time | `180s` |
 | PoW Reward | `50 KYC` |*
 | Masternode Requirement | `5,000 KYC` |
 | Port | `25676` |
