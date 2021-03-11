@@ -1,0 +1,26 @@
+[Unit]
+Description=krypttocoin's distributed currency daemon
+After=network.target
+
+[Service]
+User=krypttocoin
+Group=krypttocoin
+
+Type=forking
+PIDFile=/var/lib/krypttocoind/krypttocoind.pid
+
+ExecStart=/usr/bin/krypttocoind -daemon -pid=/var/lib/krypttocoind/krypttocoind.pid \
+          -conf=/etc/krypttocoin/krypttocoin.conf -datadir=/var/lib/krypttocoind
+
+ExecStop=-/usr/bin/krypttocoin-cli -conf=/etc/krypttocoin/krypttocoin.conf \
+         -datadir=/var/lib/krypttocoind stop
+
+Restart=always
+PrivateTmp=true
+TimeoutStopSec=60s
+TimeoutStartSec=2s
+StartLimitInterval=120s
+StartLimitBurst=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,26 @@
+# /etc/conf.d/krypttocoind: config file for /etc/init.d/krypttocoind
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/krypttocoin/krypttocoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/krypttocoind"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/krypttocoind.pid"
+
+# Where to write krypttocoind data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/krypttocoind"
+
+# User and group to own krypttocoind process
+#BITCOIND_USER="krypttocoin"
+#BITCOIND_GROUP="krypttocoin"
+
+# Path to krypttocoind executable
+#BITCOIND_BIN="/usr/bin/krypttocoind"
+
+# Nice value to run krypttocoind under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

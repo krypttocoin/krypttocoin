@@ -1,0 +1,11 @@
+[Protocol]
+exec=krypttocoin-qt '%u'
+protocol=krypttocoin
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false
