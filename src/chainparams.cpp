@@ -26,6 +26,30 @@ struct SeedSpec6 {
 
 #include "chainparamsseeds.h"
 
+void MineGenesis(CBlock genesis){
+    // This will figure out a valid hash and Nonce if you're creating a different genesis block:
+    uint256 newhash = genesis.GetHash();
+    uint256 besthash;
+    int64_t nStart = GetTime();
+    uint256 hashTarget = ~uint256(0) >> 20;
+    printf("Target: %s\n", hashTarget.GetHex().c_str());
+    memset(&besthash,0xFF,32);
+    while (newhash > hashTarget) {
+        ++genesis.nNonce;
+        if (genesis.nNonce == 0){
+            printf("NONCE WRAPPED, incrementing time");
+            ++genesis.nTime;
+        }
+        newhash = genesis.GetHash();
+        if(newhash < besthash){
+            besthash=newhash;
+            printf("New best: %s\n", newhash.GetHex().c_str());
+        }
+    }
+    printf("Found Genesis, Nonce: %ld \nHash: %s\n", genesis.nNonce, genesis.GetHash().GetHex().c_str());
+    printf("Genesis Hash Merkle: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+}
+
 /**
  * Main network
  */
@@ -109,7 +133,7 @@ public:
         nModifierUpdateBlock = 1;
         nMaxMoneyOut = 20000000 * COIN; 
 
-        const char* pszTimestamp = "Sea lo que sea sera Y quede lo que quede de mi Bendita la alegría a la que me has atado";
+        const char* pszTimestamp = "Sea lo que sea sera Y quede lo que quede de mi Bendita la alegrÃ­a a la que me has atado";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -122,7 +146,7 @@ public:
         genesis.nVersion = 1;
         genesis.nTime = 1615494281;
         genesis.nBits = bnProofOfWorkLimit.GetCompact();
-        genesis.nNonce = 1220715;
+        genesis.nNonce = 1340291;
 
 
         hashGenesisBlock = genesis.GetHash();
@@ -130,8 +154,8 @@ public:
         //MineGenesis(genesis);
         vFixedSeeds.clear();
         vSeeds.clear();
-        assert(hashGenesisBlock == uint256("0x000008881b4b72602ff670893f93b481472634de9e48d5b2b038ae9074a10854"));
-        assert(genesis.hashMerkleRoot == uint256("0x041bdda593513a436b6dabbbf849b51418610e79d87824ca1ce1b6928a482eaa"));
+        assert(hashGenesisBlock == uint256("0x000008f02ed9143ffa4f14e5ac292d53e76651358ae11d4b8c378d40552edc75"));
+        assert(genesis.hashMerkleRoot == uint256("0x5721e13893e3b38b95fe2ad83a1cbc54c714f066ea6069ad5e220df783d6fbb9"));
 
 	
 		
